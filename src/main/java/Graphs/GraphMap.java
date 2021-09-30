@@ -2,7 +2,7 @@ package Graphs;
 
 import java.util.*;
 
-public class GraphMap {
+public class GraphMap implements Graph{
 
     private static GraphMap instance = null;
 
@@ -28,6 +28,11 @@ public class GraphMap {
     public void addEdge(Vertex source, Vertex destination){
         graph.get(source).add(destination);
         //graph.get(v2).add(v1); for non directed graph
+    }
+
+    @Override
+    public void addWeightedEdge(Vertex source, Vertex destination, int weight) {
+        throw new NoSuchElementException("Graph is not weighted");
     }
 
     public void removeVertex(Vertex v){
@@ -58,6 +63,29 @@ public class GraphMap {
             }
         }
         return visited;
+    }
+
+    public Set<Vertex> BFSrec(Vertex root){
+        Set<Vertex> visited = new LinkedHashSet<>();
+        Queue<Vertex> queue = new LinkedList<>();
+        queue.add(root);
+        BFSrec(queue, visited);
+        return visited;
+    }
+
+    private void BFSrec(Queue<Vertex> queue, Set<Vertex> visited){
+        if (queue.isEmpty()){
+            return;
+        }
+
+        Vertex v = queue.poll();
+        visited.add(v);
+        for (Vertex adj : graph.get(v)){
+            if (!visited.contains(adj)) {
+                queue.add(adj);
+                BFSrec(queue, visited);
+            }
+        }
     }
 
     public Set<Vertex> DFS(Vertex root){
@@ -117,6 +145,7 @@ public class GraphMap {
      *             mark n with a permanent mark
      *             add n to head of L
      *
+     * Since each edge and node is visited once, the algorithm runs in linear time.
      * @param
      * @return
      */
@@ -141,26 +170,6 @@ public class GraphMap {
         temporary.remove(v);
         permanent.add(v);
     }
-
-    public Set<Vertex> Dijkstra(){
-        return null;
-    }
-
-    public Vertex findRoot(){
-        Set<Vertex> allVertexes = new HashSet<>(graph.keySet());
-        for (Vertex v : graph.keySet()){
-            allVertexes.removeAll(graph.get(v));
-        }
-        for (Vertex v : allVertexes) {
-            return v;
-        }
-        System.out.println("No root in graph");
-        return null;
-    }
-
-
-    //TODO Dijkstra, Floyd
-
 
     @Override
     public String toString() {
