@@ -1,3 +1,5 @@
+package InterviewQuestions;
+
 import java.util.*;
 
 /*

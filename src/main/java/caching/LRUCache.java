@@ -1,6 +1,8 @@
+package caching;
+
 import java.util.*;
 
-class LRUcache {
+class LRUCache {
 
     class Node {
         Node prev;
@@ -17,7 +19,7 @@ class LRUcache {
     Map<Integer, Node> map;
     int capacity;
 
-    public LRUcache(int capacity){
+    public LRUCache(int capacity){
         this.capacity = capacity;
         this.map = new HashMap<>();
     }
@@ -39,12 +41,16 @@ class LRUcache {
         head = node;
     }
 
+    private void removeTail(){
+        tail.prev.next = null;
+        tail = tail.prev;
+    }
+
     public void put(int key, int val){
         Node node;
         if (!map.containsKey(key)){
             if (map.size() == capacity) {
-                tail.prev.next = null;
-                tail = tail.prev;
+                removeTail();
             }
             node = new Node(val);
             map.put(key, node);
@@ -53,6 +59,5 @@ class LRUcache {
             node.value = val;
         }
         moveNodeToHead(node);
-        Queue q = new LinkedList();
     }
 }
