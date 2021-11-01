@@ -16,6 +16,8 @@ package Sorting;
  *             i ← i + 1
  *         end while
  *
+ *      average - n^2 worst - n^2 memory - 1
+ *
  *
  *      Selection sort is an in-place comparison sort. It has O(n^2) complexity, making it inefficient on large lists, and generally performs worse than the similar insertion sort.
  *      The algorithm finds the minimum value, swaps it with the value in the first position, and repeats these steps for the remainder of the list.
@@ -38,6 +40,8 @@ package Sorting;
  *             }
  *         }
  *
+ *      average - n^2 worst - n^2 memory - 1
+ *
  *
  *      Optimizing bubble sort. The bubble sort algorithm can be optimized by observing that the n-th pass finds the n-th largest element and puts it into its final place.
  *      So, the inner loop can avoid looking at the last n − 1 items when running for the n-th time:
@@ -55,22 +59,27 @@ package Sorting;
  *             until not swapped
  *         end procedure
  *
+ *      average - n^2 worst - n^2 memory - 1
+ *
  * A comparison sort cannot perform better than O(n log n) on average:
  *
  *      Quicksort is a divide-and-conquer algorithm. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays,
  *      according to whether they are less than or greater than the pivot. For this reason, it is sometimes called partition-exchange sort.
  *      The sub-arrays are then sorted recursively. This can be done in-place, requiring small additional amounts of memory to perform the sorting.
+ *      average - nlogn; worst - n^2; memory - logn
  *
  *
  *      Mergesort works as follows:
  *          Divide the unsorted list into n sublists, each containing one element (a list of one element is considered sorted).
  *          Repeatedly merge sublists to produce new sorted sublists until there is only one sublist remaining. This will be the sorted list.
+ *      average - nlogn; worst - nlogn; memory - n
  *
  *
  *      HeapSort can be thought of as an improved selection sort: like selection sort,
  *      heapsort divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element from it and
  *      inserting it into the sorted region. Unlike selection sort, heapsort does not waste time with a linear-time scan of the unsorted region; rather,
- *      heap sort maintains the unsorted region in a heap data structure to more quickly find the largest element in each step. *
+ *      heap sort maintains the unsorted region in a heap data structure to more quickly find the largest element in each step.
+ *      average - nlogn; worst - nlogn; memory - 1
  */
 
 

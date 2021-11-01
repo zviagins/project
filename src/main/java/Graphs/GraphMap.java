@@ -50,7 +50,7 @@ public class GraphMap implements Graph{
     public Set<Vertex> BFS(Vertex root){
         if (root == null) throw new IllegalArgumentException();
         Set<Vertex> visited = new LinkedHashSet<>();
-        Queue<Vertex> queue = new LinkedList();
+        Queue<Vertex> queue = new LinkedList<>();
         queue.add(root);
         visited.add(root);
         while (!queue.isEmpty()){
